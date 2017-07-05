@@ -1,2 +1,59 @@
 # modifyELF
 修改Android lib***.so（ELF）文件的函数名和hash
+
+文件说明
+-----------
+  modify.c		        修改so文件（ELF文件）方法对应的hash
+  readsymbol.c        取并打印so文件内的symbol
+
+  libtest/modify      modify.c编译后的文件
+  libtest/readsymbol  readsymbol.c编译后的文件
+  libtest/libxlog.so  用于测试的so文件
+
+使用方式
+-----------
+先使用readsymbol打印so文件内所有的函数名：
+```
+readsymbol libxlog.so
+```
+打印结果：
+```
+Java_com_tendk01_mm_xlog_LogLogicJni_initLogInfo
+Java_com_tendk01_mm_xlog_LogLogicJni_setIsAlphaVersion
+Java_com_tendk01_mm_xlog_LogLogicJni_getLogLevelFromCfg
+Java_com_tendk01_mm_xlog_LogLogicJni_getIPxxLogLevel
+Java_com_tendk01_mm_xlog_LogLogicJni_getAppenderModeFromCfg
+Java_com_tendk01_mm_xlog_LogLogicJni_setIPxxLogML
+Java_com_tendk01_mm_xlog_LogLogicJni_setConsoleLogOpen
+Java_com_tendk01_mm_xlog_LogLogicJni_setErrLogOpen
+Java_com_tendk01_mm_xlog_Xlog_onCreate
+Java_com_tendk01_mm_xlog_Xlog_appenderOpen
+Java_com_tendk01_mm_xlog_Xlog_appenderClose
+Java_com_tendk01_mm_xlog_Xlog_appenderFlush
+Java_com_tendk01_mm_xlog_Xlog_logWrite
+Java_com_tendk01_mm_xlog_Xlog_logWrite2
+Java_com_tendk01_mm_xlog_Xlog_getLogLevel
+Java_com_tendk01_mm_xlog_Xlog_setLogLevel
+Java_com_tendk01_mm_xlog_Xlog_setAppenderMode
+```
+然后使用modify修改函数名的hash
+```
+./modify libxlog.so Java_com_tencent_mm_xlog_LogLogicJni_initLogInfo Java_com_tendk01_mm_xlog_LogLogicJni_initLogInfo
+./modify libxlog.so Java_com_tencent_mm_xlog_LogLogicJni_setIsAlphaVersion Java_com_tendk01_mm_xlog_LogLogicJni_setIsAlphaVersion
+./modify libxlog.so Java_com_tencent_mm_xlog_LogLogicJni_getLogLevelFromCfg Java_com_tendk01_mm_xlog_LogLogicJni_getLogLevelFromCfg
+./modify libxlog.so Java_com_tencent_mm_xlog_LogLogicJni_getIPxxLogLevel Java_com_tendk01_mm_xlog_LogLogicJni_getIPxxLogLevel
+./modify libxlog.so Java_com_tencent_mm_xlog_LogLogicJni_getAppenderModeFromCfg Java_com_tendk01_mm_xlog_LogLogicJni_getAppenderModeFromCfg
+./modify libxlog.so Java_com_tencent_mm_xlog_LogLogicJni_setIPxxLogML Java_com_tendk01_mm_xlog_LogLogicJni_setIPxxLogML
+./modify libxlog.so Java_com_tencent_mm_xlog_LogLogicJni_setConsoleLogOpen Java_com_tendk01_mm_xlog_LogLogicJni_setConsoleLogOpen
+./modify libxlog.so Java_com_tencent_mm_xlog_LogLogicJni_setErrLogOpen Java_com_tendk01_mm_xlog_LogLogicJni_setErrLogOpen
+./modify libxlog.so Java_com_tencent_mm_xlog_Xlog_onCreate Java_com_tendk01_mm_xlog_Xlog_onCreate
+./modify libxlog.so Java_com_tencent_mm_xlog_Xlog_appenderOpen Java_com_tendk01_mm_xlog_Xlog_appenderOpen
+./modify libxlog.so Java_com_tencent_mm_xlog_Xlog_appenderClose Java_com_tendk01_mm_xlog_Xlog_appenderClose
+./modify libxlog.so Java_com_tencent_mm_xlog_Xlog_appenderFlush Java_com_tendk01_mm_xlog_Xlog_appenderFlush
+./modify libxlog.so Java_com_tencent_mm_xlog_Xlog_logWrite Java_com_tendk01_mm_xlog_Xlog_logWrite
+./modify libxlog.so Java_com_tencent_mm_xlog_Xlog_logWrite2 Java_com_tendk01_mm_xlog_Xlog_logWrite2
+./modify libxlog.so Java_com_tencent_mm_xlog_Xlog_getLogLevel Java_com_tendk01_mm_xlog_Xlog_getLogLevel
+./modify libxlog.so Java_com_tencent_mm_xlog_Xlog_setLogLevel Java_com_tendk01_mm_xlog_Xlog_setLogLevel
+./modify libxlog.so Java_com_tencent_mm_xlog_Xlog_setAppenderMode Java_com_tendk01_mm_xlog_Xlog_setAppenderMode
+```
+完成。
