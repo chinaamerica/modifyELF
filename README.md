@@ -4,10 +4,13 @@
 文件说明
 -----------
   modify.c		        修改so文件（ELF文件）方法对应的hash
+  
   readsymbol.c        取并打印so文件内的symbol
   
   libtest/modify      modify.c编译后的文件（编译环境OS X，需要在其他环境执行的可以用源码重新编译）
+  
   libtest/readsymbol  readsymbol.c编译后的文件（编译环境OS X，需要在其他环境执行的可以用源码重新编译）
+  
   libtest/libxlog.so  用于测试的so文件
 
 使用方式
